@@ -174,8 +174,8 @@ body{animation:pgin .6s var(--ease) both}
 .prow__t b{display:block;font:500 15px/1.3 var(--body)}
 .prow__t em{display:block;font-style:normal;font-size:12px;color:var(--secondary)}
 .prow__p{font-size:14px;font-weight:500;color:var(--primary)}
-.prow svg:last-child{width:14px;height:12px;color:var(--secondary);transition:transform .5s var(--ease)}
-.prow:hover svg:last-child{transform:translateX(5px);color:var(--primary)}
+.prow>svg:last-child{width:15px;height:12px;color:var(--secondary);transition:transform .5s var(--ease),color .3s}
+.prow:hover>svg:last-child{transform:translateX(5px);color:var(--primary)}
 
 /* blog */
 .bcard{display:flex;flex-direction:column;background:var(--soft);border-radius:20px;overflow:hidden;transition:transform .6s var(--ease),box-shadow .6s var(--ease),opacity .9s var(--ease) var(--d,0s)}
@@ -299,3 +299,15 @@ body{animation:pgin .6s var(--ease) both}
   .cta__text .h3{max-width:580px}
   .cta__text .large{max-width:540px}
 }
+
+/* ===== premium service icon badges: gradient circle, inner ring, soft glow, white duotone glyph ===== */
+.prow__ico,.mega__ico,.scard__ico,.shero__ico{--g1:#0b8a8c;--g2:#015a5c;background:linear-gradient(145deg,var(--g1),var(--g2));box-shadow:inset 0 0 0 1px rgba(255,255,255,.28),inset 0 1px 0 rgba(255,255,255,.35),0 8px 18px -6px rgba(1,109,111,.55);color:#fff}
+.prow__ico[data-tone=accent],.mega__ico[data-tone=accent],.scard[data-tone=accent] .scard__ico{--g1:#e07f95;--g2:#bf566f;box-shadow:inset 0 0 0 1px rgba(255,255,255,.3),inset 0 1px 0 rgba(255,255,255,.4),0 8px 18px -6px rgba(204,108,130,.6)}
+.scard__ico{background:linear-gradient(145deg,var(--g1),var(--g2))}
+.scard[data-tone=accent] .scard__ico{background:linear-gradient(145deg,var(--g1),var(--g2))}
+.prow__ico{width:46px;height:46px}
+.prow__ico svg,.mega__ico svg{width:24px;height:24px;fill:#fff;color:#fff}
+.scard__ico svg{width:30px;height:30px;fill:#fff}
+.shero__ico{background:#fff;--g1:#fff;--g2:#e7f6f4;color:var(--primary);box-shadow:0 10px 26px -8px rgba(0,0,0,.35)}
+.shero__ico svg{width:26px;height:26px;fill:var(--primary)}
+.pill svg{fill:currentColor}

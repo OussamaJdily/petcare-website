@@ -106,6 +106,6 @@ const PLANS = [
 module.exports = { ICONS, SERVICES, POSTS, POST_BODY_A, POST_BODY_B, FAQS, PLANS };
 
 // Professional icon set: Phosphor (regular), inlined from ./icons
-const PH = { wellness:'heartbeat', vaccinations:'syringe', dental:'tooth', grooming:'scissors', surgery:'first-aid-kit', boarding:'house', check:'check-circle', clock:'clock', pin:'map-pin', phone:'phone', mail:'envelope-simple', bell:'siren', home:'house', shield:'shield-check', heart:'heart', star:'star' };
+const PH = { wellness:'heartbeat-duotone', vaccinations:'syringe-duotone', dental:'tooth-duotone', grooming:'scissors-duotone', surgery:'first-aid-kit-duotone', boarding:'house-duotone', check:'check-circle', clock:'clock', pin:'map-pin', phone:'phone', mail:'envelope-simple', bell:'siren', home:'house', shield:'shield-check', heart:'heart', star:'star' };
 for (const [k, f] of Object.entries(PH)) ICONS[k] = require('fs').readFileSync(require('path').join(__dirname, 'icons', f + '.svg'), 'utf8').trim();
 for (const k of Object.keys(ICONS)) ICONS[k] = ICONS[k].replace('<svg ', '<svg class="ico" aria-hidden="true" ');
