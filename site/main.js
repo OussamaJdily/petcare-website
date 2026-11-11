@@ -82,9 +82,11 @@
   /* 3D character flip, scrubbed by scroll (Framer: textEffect onScrollTarget, rotateY 90deg -> 0) */
   const rots = $('.chars[data-rot]').map(el => ({ el, cs: $('.c', el) }));
   rots.forEach(r => { io.unobserve(r.el); r.el.classList.add('in'); r.cs.forEach(c => c.style.transition = 'none'); });
-  let navAcc = 0, vh = innerHeight, lastY = scrollY, ticking = false, lastN = -1, stTop = 0, stH = 1;
+  const navProg = document.getElementById('navProgress');
+  let docMax = 1, navAcc = 0, vh = innerHeight, lastY = scrollY, ticking = false, lastN = -1, stTop = 0, stH = 1;
   function measure() {
     vh = innerHeight;
+    docMax = document.documentElement.scrollHeight - vh;
     const sy = scrollY;
     rots.forEach(r => { const b = r.el.getBoundingClientRect(); r.top = b.top + sy; r.h = b.height; });
     for (let i = pend.length - 1; i >= 0; i--) {
@@ -103,6 +105,8 @@
     // jitter / tiny reversals can't make it flicker; always visible near the top and while the menu is open.
     const dy = y - lastY; lastY = y;
     if (nav) {
+      nav.classList.toggle('is-stuck', y > 16);
+      if (navProg) navProg.style.transform = 'scaleX(' + clamp(y / Math.max(1, docMax)).toFixed(4) + ')';
       if (y < 120 || nav.classList.contains('open')) { navAcc = 0; nav.classList.remove('is-hidden'); }
       else if (dy) {
         navAcc = Math.sign(dy) === Math.sign(navAcc) ? navAcc + dy : dy;
@@ -161,13 +165,45 @@
     v.addEventListener('click', open);
   });
 
-  /* Mobile menu + anchor smooth scroll */
+  /* Navbar: mobile full-screen menu, services mega-menu, accordion */
   const burger = document.getElementById('burger');
-  burger && burger.addEventListener('click', () => nav.classList.toggle('open'));
+  const mm = document.getElementById('mobileMenu');
+  const setMenu = open => {
+    if (!nav || !mm) return;
+    nav.classList.toggle('open', open);
+    mm.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    mm.setAttribute('aria-hidden', !open);
+    document.documentElement.classList.toggle('menu-open', open);
+    if (lenis) open ? lenis.stop() : lenis.start();
+    if (open) nav.classList.remove('is-hidden');
+  };
+  burger && burger.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+  mm && $('a', mm).forEach(a => a.addEventListener('click', () => setMenu(false)));
+  $('.mm__acc-t').forEach(t => t.addEventListener('click', () => {
+    const acc = t.parentElement, o = acc.classList.toggle('open');
+    t.setAttribute('aria-expanded', o);
+  }));
+  addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    setMenu(false);
+    $('.nav__dd').forEach(d => { d.classList.remove('open'); d.querySelector('.nav__dd-t').setAttribute('aria-expanded', 'false'); });
+    if (document.activeElement && document.activeElement.closest('.nav__dd')) document.activeElement.blur();
+  });
+  matchMedia('(min-width:960px)').addEventListener('change', e => e.matches && setMenu(false));
+  // desktop dropdown: keep aria-expanded in sync with hover / keyboard focus
+  $('.nav__dd').forEach(d => {
+    const t = d.querySelector('.nav__dd-t');
+    const sync = () => t.setAttribute('aria-expanded', d.matches(':hover, :focus-within'));
+    d.addEventListener('mouseenter', sync); d.addEventListener('mouseleave', sync);
+    d.addEventListener('focusin', sync); d.addEventListener('focusout', () => setTimeout(sync, 0));
+  });
+
   $('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
     const id = a.getAttribute('href');
     const t = id.length > 1 && document.querySelector(id);
-    nav.classList.remove('open');
+    setMenu(false);
     if (id === '#top' || t) {
       e.preventDefault();
       const target = id === '#top' ? 0 : t;

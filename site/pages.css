@@ -4,7 +4,6 @@ body{animation:pgin .6s var(--ease) both}
 .ico{fill:currentColor;stroke:none;flex:none}
 .cico{flex:none;display:grid;place-items:center;width:42px;height:42px;border-radius:8px;background:#fff;border:1px solid rgba(4,16,17,.1);color:#111622}
 .cico svg{width:22px;height:22px}
-.nav__links a.is-active::after{transform:scaleX(1)}
 .h1{font:500 72px/1.02em var(--display);letter-spacing:-.035em;color:#fff;max-width:580px}
 .h2s{font:500 48px/1.08em var(--display);letter-spacing:-.03em}
 .h3s{font:500 32px/1.1em var(--display);letter-spacing:-.025em}
