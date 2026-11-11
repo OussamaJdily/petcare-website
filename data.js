@@ -19,27 +19,27 @@ const ICONS = {
 };
 
 const SERVICES = [
-  { slug: 'wellness-exams', title: 'Wellness Exams', icon: 'wellness', tone: 'primary', price: 'From $65', dur: '30–45 min', pill: 'Wellness',
+  { slug: 'wellness-exams', title: 'Wellness Exams', icon: 'wellness', tone: 'primary', price: 'From 300 MAD', dur: '30–45 min', pill: 'Wellness',
     summary: 'Routine checkups and diagnostics to catch issues early and keep your pet in top shape.',
     img: 'P7pOxWwc7HelmvYLL9Xd1cTaXtw', hero: 'LKXR0nv6YOQT43eq0j7jrK00HU', heroAlt: 'Veterinarian greeting a Labrador during a wellness exam',
     body: [['h2', 'A complete nose-to-tail check'], ['p', 'Every wellness exam starts with a calm, unhurried conversation about your pet’s routine, appetite, energy and behavior. Then our veterinarians examine eyes, ears, teeth, heart, lungs, skin, joints and weight, so small changes are spotted long before they become problems.'], ['p', 'You leave with a clear summary, a personalised care plan and answers to every question, never a rushed appointment.'], ['h3', 'What’s included'], ['p', 'Full physical examination, weight and body-condition score, parasite prevention review, nutrition advice, and a vaccination schedule check. Blood work and diagnostics are recommended only when they’re genuinely useful.']] },
-  { slug: 'vaccinations', title: 'Vaccinations', icon: 'vaccinations', tone: 'accent', price: 'From $35', dur: '15–20 min', pill: 'Vaccinations',
+  { slug: 'vaccinations', title: 'Vaccinations', icon: 'vaccinations', tone: 'accent', price: 'From 200 MAD', dur: '15–20 min', pill: 'Vaccinations',
     summary: 'Protect your pet with essential vaccines that support a strong and healthy immune system.',
     img: 'e0DH2Jqrk72sc9v6i9TmlDIEEdQ', hero: 'sVfeici7FLDOFLyDMqPJZkOu8Oc', heroAlt: 'Puppy held calmly during a clinic visit',
     body: [['h2', 'Protection that fits your pet’s life'], ['p', 'Not every pet needs every vaccine. We tailor a schedule to your pet’s age, health and lifestyle, whether they’re a curious puppy, an indoor cat or a seasoned traveller.'], ['p', 'Core vaccines protect against serious, common diseases, while lifestyle vaccines are recommended when your pet’s routine calls for them.'], ['h3', 'Puppies & kittens'], ['p', 'Early vaccine courses are spaced over several visits. We keep appointments short, positive and treat-filled, so first vet visits build confidence rather than fear.']] },
-  { slug: 'dental-care', title: 'Dental Care', icon: 'dental', tone: 'primary', price: 'From $180', dur: 'Half day', pill: 'Dental',
+  { slug: 'dental-care', title: 'Dental Care', icon: 'dental', tone: 'primary', price: 'From 900 MAD', dur: 'Half day', pill: 'Dental',
     summary: 'Professional dental cleanings and treatments for healthy teeth and gums.',
     img: 'E0p18K0a2FFRDtEsSfLd6oXDKA', hero: 'cIVGJPGd9MzcEJcup7gKHLhvzs', heroAlt: 'Close-up of a dog’s clean, healthy teeth',
     body: [['h2', 'Healthy mouth, happier pet'], ['p', 'Most pets show signs of dental disease by age three, often without obvious symptoms. Professional cleanings under safe, monitored anesthesia remove plaque and tartar above and below the gumline.'], ['p', 'Every dental procedure includes a full oral assessment, charting and polishing, with digital X-rays when needed to see what’s hidden beneath the surface.'], ['h3', 'Aftercare at home'], ['p', 'We’ll show you simple brushing techniques, recommend dental-friendly diets and chews, and set a gentle reminder for your pet’s next check.']] },
-  { slug: 'grooming', title: 'Grooming', icon: 'grooming', tone: 'accent', price: 'From $55', dur: '60–90 min', pill: 'Grooming',
+  { slug: 'grooming', title: 'Grooming', icon: 'grooming', tone: 'accent', price: 'From 250 MAD', dur: '60–90 min', pill: 'Grooming',
     summary: 'Bathing, trimming, and styling to keep your pet looking great and feeling their best.',
     img: 'GihUIM1QMN6mLRS4PBrDdUQzk', hero: 'nNiPNn9ksbgzm2T3i5tO8kqGac', heroAlt: 'Groomer trimming a white poodle',
     body: [['h2', 'Grooming with a vet’s eye'], ['p', 'Our groomers work alongside our veterinary team, so lumps, skin irritation, ear infections or overgrown nails are noticed and flagged early.'], ['p', 'We use gentle, low-stress handling and pet-safe products, and we never rush a nervous pet. Breaks, cuddles and patience are part of the service.'], ['h3', 'Services available'], ['p', 'Bath and blow-dry, breed-specific trims, de-shedding treatments, nail clipping, ear cleaning and sanitary trims, plus puppy introductions to make grooming a lifelong positive routine.']] },
-  { slug: 'surgery', title: 'Surgery', icon: 'surgery', tone: 'primary', price: 'Consult from $95', dur: 'By appointment', pill: 'Surgery',
+  { slug: 'surgery', title: 'Surgery', icon: 'surgery', tone: 'primary', price: 'Consult from 350 MAD', dur: 'By appointment', pill: 'Surgery',
     summary: 'Safe and advanced surgical procedures performed by experienced veterinarians.',
     img: 'xSpSOQH3SuM9oVtxT1Qpc2i5zg', hero: 'tl0KhRfRTLAbEke1WuzQjQDHEjE', heroAlt: 'Cat resting comfortably while recovering after surgery',
     body: [['h2', 'Advanced care, gentle recovery'], ['p', 'From routine spays and neuters to soft-tissue and orthopedic procedures, every surgery is performed in our modern theatre with dedicated anesthetic monitoring.'], ['p', 'Before any procedure we walk you through what to expect, the risks and the recovery plan, so you can make decisions with confidence.'], ['h3', 'Aftercare & pain management'], ['p', 'Your pet goes home with a tailored pain-management plan and clear instructions, and our team checks in during recovery. Post-op re-checks are always included.']] },
-  { slug: 'pet-boarding', title: 'Pet Boarding', icon: 'boarding', tone: 'accent', price: 'From $48 / night', dur: 'Overnight stays', pill: 'Boarding',
+  { slug: 'pet-boarding', title: 'Pet Boarding', icon: 'boarding', tone: 'accent', price: 'From 120 MAD / night', dur: 'Overnight stays', pill: 'Boarding',
     summary: 'A safe, comfortable, and loving home away from home while you’re away.',
     img: 'jU4XgNOXzU14juSyrWZqNPbRnlg', hero: 'hRASUd0tBVl1GFKvbAsCUEwPBs', heroAlt: 'Happy dogs playing together at daycare',
     body: [['h2', 'A calm stay, medically supervised'], ['p', 'Boarding at PetCare+ means your pet is looked after by people who understand animals, with veterinarians on site if anything changes.'], ['p', 'Pets enjoy cosy private suites, regular walks and play, familiar food routines and plenty of affection. Medication and special diets are handled carefully and logged.'], ['h3', 'Daily updates'], ['p', 'We send a photo and a short note every day, so you can relax and enjoy your time away, knowing your pet is happy and well.']] }
@@ -91,16 +91,16 @@ const FAQS = [
   ['Do you see emergencies?', 'Yes. During opening hours we prioritise emergencies. Call ahead if you can so the team is ready the moment you arrive. Out of hours, our phone line directs you to the nearest 24/7 partner hospital.', 'visit'],
   ['Which animals do you care for?', 'We care for dogs, cats, rabbits and other small mammals. For birds and reptiles we can recommend trusted exotic-animal specialists nearby.', 'care'],
   ['Can I stay with my pet during the exam?', 'Of course. Most exams and vaccinations happen with you right there. For surgery and some diagnostics we’ll explain each step and keep you updated throughout.', 'care'],
-  ['Which payment methods do you accept?', 'We accept all major cards, Apple Pay and Google Pay. Pet insurance claims can be submitted directly from our clinic for most major providers.', 'care'],
+  ['Which payment methods do you accept?', 'We accept cash, all major bank cards and bank transfer. If your pet is insured, we provide the invoice and medical report you need to submit your claim.', 'care'],
   ['What’s included in a wellness plan?', 'Every plan includes scheduled wellness exams, core vaccinations, parasite prevention and discounts on additional care. Higher tiers add dental cleanings, diagnostics and priority booking.', 'plan'],
   ['Can I cancel my plan at any time?', 'Yes. Plans are billed monthly with no long-term contract. You can pause or cancel anytime, and any unused benefits remain available until the end of your billing month.', 'plan'],
   ['Do plans cover emergencies or surgery?', 'Wellness plans focus on preventive care. Emergency treatment and surgery aren’t included, but members receive 10–15% off, and we’ll always talk costs through with you first.', 'plan']
 ];
 
 const PLANS = [
-  { name: 'Essential', desc: 'Preventive basics for healthy adult pets.', price: '$29', items: ['Two wellness exams a year', 'Core vaccinations', 'Year-round parasite prevention', '10% off additional care', 'Nurse chat support'] },
-  { name: 'Complete', desc: 'Our most loved plan for total peace of mind.', price: '$49', featured: true, items: ['Everything in Essential', 'Annual dental cleaning', 'Yearly blood panel', '15% off additional care', 'Priority same-day booking'] },
-  { name: 'Senior', desc: 'Extra attention for pets aged seven and up.', price: '$69', items: ['Four wellness exams a year', 'Senior blood & urine panels', 'Mobility & pain assessments', '15% off additional care', 'Dedicated care coordinator'] }
+  { name: 'Essential', desc: 'Preventive basics for healthy adult pets.', price: '299', items: ['Two wellness exams a year', 'Core vaccinations', 'Year-round parasite prevention', '10% off additional care', 'Nurse chat support'] },
+  { name: 'Complete', desc: 'Our most loved plan for total peace of mind.', price: '499', featured: true, items: ['Everything in Essential', 'Annual dental cleaning', 'Yearly blood panel', '15% off additional care', 'Priority same-day booking'] },
+  { name: 'Senior', desc: 'Extra attention for pets aged seven and up.', price: '699', items: ['Four wellness exams a year', 'Senior blood & urine panels', 'Mobility & pain assessments', '15% off additional care', 'Dedicated care coordinator'] }
 ];
 
 module.exports = { ICONS, SERVICES, POSTS, POST_BODY_A, POST_BODY_B, FAQS, PLANS };

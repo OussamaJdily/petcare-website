@@ -21,7 +21,9 @@ const SCAL = '/img/UYnnfvGP1eET9UkCRWEY2E2dNk.webp';
 const I = (id, w) => `/img/${id}.webp`;
 const esc = s => s.replace(/&/g, '&amp;');
 
+const LOGO_D = fs.readFileSync(path.join(__dirname, 'brand', 'logo-mark.svg'), 'utf8').match(/ d="([^"]+)"/)[1];
 const SYMBOLS = `<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="logo-mark" viewBox="0 0 626 688"><path fill="currentColor" fill-rule="evenodd" d="${LOGO_D}"/></symbol>
 <symbol id="paw" viewBox="0 0 19 16"><path fill="currentColor" d="M16.3 3.79a2.27 2.27 0 1 0 0 4.42 2.27 2.27 0 0 0 0-4.42Zm0 3.16a.95.95 0 1 1 0-1.9.95.95 0 0 1 0 1.9ZM4.97 6A2.27 2.27 0 1 0 .43 6a2.27 2.27 0 0 0 4.54 0Zm-1.3 0a.95.95 0 1 1-1.9 0 .95.95 0 0 1 1.9 0Zm3.9-1.9a2.27 2.27 0 1 0 0-4.55 2.27 2.27 0 0 0 0 4.55Zm0-3.2a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9Zm4.4 3.2a2.27 2.27 0 1 0 0-4.55 2.27 2.27 0 0 0 0 4.55Zm0-3.2a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9ZM9.5 7.4c-1.9 0-5 2.7-5 5 0 1.9 1.4 3.1 2.8 3.1.9 0 1.4-.4 2.2-.4s1.3.4 2.2.4c1.4 0 2.8-1.2 2.8-3.1 0-2.3-3.1-5-5-5Zm3.7 5c0 1.2-.9 1.8-1.5 1.8-.5 0-1-.4-2.2-.4s-1.7.4-2.2.4c-.6 0-1.5-.6-1.5-1.8 0-1.5 2.3-3.7 3.7-3.7s3.7 2.2 3.7 3.7Z"/></symbol>
 <symbol id="arrow" viewBox="0 0 14 12"><path d="M12.69 6H.87M7.88 11.14S13.13 7.36 13.13 6 7.88.86 7.88.86" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
 </defs></svg>`;
@@ -33,6 +35,8 @@ const head = (title, desc) => `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
 <meta name="description" content="${desc}">
+<meta name="theme-color" content="#016d6f">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://api.fontshare.com">
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=pally@500,700&display=swap">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +59,7 @@ const nav = (active) => {
   return `<!-- NAVBAR -->
 <header class="nav" id="nav">
   <div class="nav__bar">
-    <a class="logo" href="/" aria-label="PetCare+ home"><svg class="logo__paw"><use href="#paw"/></svg><span>PetCare+</span></a>
+    <a class="logo" href="/" aria-label="PetCare+ home"><span class="logo__mark"><svg viewBox="0 0 626 688" aria-hidden="true"><use href="#logo-mark"/></svg></span><span class="logo__t">PetCare+</span></a>
     <nav class="nav__links" id="navLinks" aria-label="Main">
       <a href="/about"${cur('/about')}>About</a>
       <div class="nav__dd">
@@ -87,9 +91,9 @@ const nav = (active) => {
     <div class="mm__foot" style="--i:6">
       <a class="btn btn--light" href="/contact"><span class="btn__label">Book a Visit</span><span class="btn__icon"><svg><use href="#paw"/></svg></span></a>
       <div class="mm__info">
-        <a href="tel:+18005564802">${ICONS.phone}+1 (800) 556-4802</a>
-        <a href="mailto:hello@petcareplus.com">${ICONS.mail}hello@petcareplus.com</a>
-        <span>${ICONS.clock}Mon–Sat, 8am–7pm</span>
+        <a href="tel:+212522004802">${ICONS.phone}+212 522 00 48 02</a>
+        <a href="mailto:hello@petcareplus.ma">${ICONS.mail}hello@petcareplus.ma</a>
+        <span>${ICONS.clock}Mon–Sat, 9am–7pm</span>
       </div>
     </div>
   </nav>
@@ -119,7 +123,8 @@ const footer = `<!-- FOOTER -->
   <div class="footer__scal" style="background-image:url(${SCAL})"></div>
   <div class="footer__inner">
     <div class="footer__top">
-      <p>PetCare+ is a modern veterinary clinic offering preventive, surgical and everyday care, with the warmth every pet deserves.</p>
+      <div class="footer__brand"><a class="flogo" href="/" aria-label="PetCare+ home"><span class="logo__mark"><svg viewBox="0 0 626 688" aria-hidden="true"><use href="#logo-mark"/></svg></span><span class="logo__t">PetCare+</span></a>
+      <p>PetCare+ is a modern veterinary clinic in Casablanca offering preventive, surgical and everyday care, with the warmth every pet deserves.</p></div>
       <nav>${NAV_LINKS.map(([t, h]) => `<a href="${h}">${t}</a>`).join('')}</nav>
     </div>
     <div class="footer__word" aria-hidden="true"><span data-sy="160" data-sop=".2">PetCare+</span></div>
@@ -167,7 +172,7 @@ const secHead = (eyebrow, title, extra = '') => `<div class="sec-head">
 /* ---------- HOME ---------- */
 {
   let h = home.replace(/<svg width="0" height="0"[\s\S]*?<\/svg>\s*/, '');
-  h = h.replace(/^[\s\S]*?<body>/, head('PetCare+ — Veterinary Clinic', 'Exceptional care starts here. Compassionate veterinary care for every pet.').replace(/\n$/, ''));
+  h = h.replace(/^[\s\S]*?<body>/, head('PetCare+ — Veterinary Clinic in Casablanca', 'Exceptional care starts here. Compassionate veterinary care for every pet in Casablanca, Morocco.').replace(/\n$/, ''));
   // swap the hand-written nav/cta/footer for the shared ones
   const a = h.indexOf('<!-- NAVBAR -->'), b = h.indexOf('<main id="top">');
   h = h.slice(0, a) + nav('/') + '\n' + h.slice(b);
@@ -175,6 +180,12 @@ const secHead = (eyebrow, title, extra = '') => `<div class="sec-head">
   h = h.slice(0, c) + cta + '\n' + h.slice(d);
   const e = h.indexOf('<!-- FOOTER -->');
   h = h.slice(0, e) + footer;
+  // local-business structured data for search engines (Casablanca clinic)
+  h = h.replace('</head>', '<script type="application/ld+json">' + JSON.stringify({
+    '@context': 'https://schema.org', '@type': 'VeterinaryCare', name: 'PetCare+', telephone: '+212522004802', email: 'hello@petcareplus.ma',
+    address: { '@type': 'PostalAddress', streetAddress: 'Boulevard d’Anfa, Racine', addressLocality: 'Casablanca', postalCode: '20100', addressCountry: 'MA' },
+    openingHours: ['Mo-Fr 09:00-19:00', 'Sa 09:00-17:00'], priceRange: 'MAD'
+  }) + '</script>\n</head>');
   h = h.replace(/src="img\//g, 'src="/img/').replace(/url\(img\//g, 'url(/img/');
   h = h.replace(/href="#contact"/g, 'href="/contact"');
   let n = 0;
@@ -226,7 +237,7 @@ const secHead = (eyebrow, title, extra = '') => `<div class="sec-head">
   const faqs = `<section class="sec"><div class="sec__in sec__in--faq">
     <div class="faq-intro"><span class="eyebrow eyebrow--primary reveal">FAQ</span><h2 class="h2s chars" data-rot>Questions,<br>answered.</h2><p class="sub reveal" style="--d:.1s">Can’t find what you’re looking for? Our team is always happy to help.</p>${btn('Contact us', '/contact', 'primary', 'paw', ' style="--d:.2s"').replace('class="btn', 'class="reveal btn')}</div>
     <div class="faq-list">${faq(FAQS.slice(0, 6))}</div></div></section>`;
-  write('services.html', page({ title: 'Services — PetCare+', desc: 'Complete veterinary care under one roof.', active: '/services', body: [hero, list, process, faqs].join('\n') }));
+  write('services.html', page({ title: 'Services — PetCare+', desc: 'Complete veterinary care under one roof in Casablanca.', active: '/services', body: [hero, list, process, faqs].join('\n') }));
 }
 
 /* ---------- SERVICE DETAIL ---------- */
@@ -249,9 +260,9 @@ SERVICES.forEach((s, idx) => {
     <aside class="glance reveal" style="--d:.15s">
       <span class="eyebrow eyebrow--primary">At a glance</span>
       <h3>Ready when you are.</h3>
-      <dl><div><dt>Price</dt><dd>${s.price}</dd></div><div><dt>Duration</dt><dd>${s.dur}</dd></div><div><dt>Clinic</dt><dd>San Francisco, CA</dd></div></dl>
+      <dl><div><dt>Price</dt><dd>${s.price}</dd></div><div><dt>Duration</dt><dd>${s.dur}</dd></div><div><dt>Clinic</dt><dd>Casablanca, Maroc</dd></div></dl>
       ${btn('Book a Visit', '/contact', 'primary')}
-      <p>Questions? Call <a href="tel:+18005564802">+1 (800) 556-4802</a></p>
+      <p>Questions? Call <a href="tel:+212522004802">+212 522 00 48 02</a></p>
     </aside></div></section>`;
   const more = `<section class="sec sec--tight"><div class="sec__in sec__in--wide">
     ${secHead('More services', 'Care for every stage of life', `<div class="reveal" style="--d:.1s">${btn('All services', '/services', 'primary')}</div>`)}
@@ -266,11 +277,11 @@ SERVICES.forEach((s, idx) => {
   const plans = `<section class="sec"><div class="sec__in sec__in--wide">
     <div class="plans">${PLANS.map((p, i) => `<div class="plan${p.featured ? ' plan--feat' : ''} reveal" style="--d:${(i * 0.1).toFixed(1)}s">
       <div class="plan__top"><div class="plan__name"><b>${p.name}</b>${p.featured ? '<span class="badge2">Most popular</span>' : ''}</div><p>${p.desc}</p></div>
-      <div class="plan__price"><b>${p.price}</b><span>/ month</span></div>
+      <div class="plan__price"><b>${p.price}</b><span>MAD / month</span></div>
       ${btn('Choose ' + p.name, '/contact', p.featured ? 'light' : 'primary')}
       <hr><span class="eyebrow">What’s included</span>
       <ul>${p.items.map(x => `<li>${ICONS.check}${x}</li>`).join('')}</ul></div>`).join('')}</div>
-    <p class="plans__note reveal">Prices in USD, per pet. Add a second pet to any plan and save 15%.</p></div></section>`;
+    <p class="plans__note reveal">Prices in Moroccan dirhams (MAD), per pet. Add a second pet to any plan and save 15%.</p></div></section>`;
   const payg = `<section class="sec sec--soft"><div class="sec__in sec__in--faq">
     <div class="faq-intro"><span class="eyebrow eyebrow--primary reveal">Pay as you go</span><h2 class="h2s chars" data-rot>Prefer to<br>pay per visit?</h2><p class="sub reveal" style="--d:.1s">Transparent starting prices for every service. We’ll always confirm costs before any treatment begins.</p></div>
     <div class="prices reveal" style="--d:.1s">${SERVICES.map(s => `<a class="prow" href="/services/${s.slug}"><span class="prow__ico" data-tone="${s.tone}">${ICONS[s.icon]}</span><span class="prow__t"><b>${s.title}</b><em>${s.dur}</em></span><span class="prow__p">${s.price}</span><svg><use href="#arrow"/></svg></a>`).join('')}</div></div></section>`;
@@ -310,11 +321,12 @@ POSTS.forEach((p, idx) => {
 /* ---------- CONTACT ---------- */
 {
   const hero = phero('Let’s talk about your pet.', 'Book a visit, ask a question or tell us how we can help. We usually reply within a few hours.', '', 'phero--short');
-  const info = [['pin', 'Visit us', '340 Pine Street, Suite 800', 'San Francisco, CA 94104'], ['phone', 'Call us', '+1 (800) 556-4802', 'Mon–Sat, 8am–7pm'], ['mail', 'Email', 'hello@petcareplus.com', 'We reply within 4 hours'], ['bell', 'Emergencies', 'Same-day urgent care', 'Call ahead so we’re ready']];
-  const hours = [['Monday – Friday', '8:00am – 7:00pm'], ['Saturday', '9:00am – 5:00pm'], ['Sunday', 'Emergency line only']];
+  const info = [['pin', 'Visit us', 'Boulevard d’Anfa, Racine', 'Casablanca 20100, Maroc'], ['phone', 'Call us', '+212 522 00 48 02', 'Mon–Sat, 9am–7pm'], ['mail', 'Email', 'hello@petcareplus.ma', 'We reply within 4 hours'], ['bell', 'Emergencies', 'Same-day urgent care', 'Call ahead so we’re ready']];
+  const hours = [['Monday – Friday', '9:00am – 7:00pm'], ['Saturday', '9:00am – 5:00pm'], ['Sunday', 'Emergency line only']];
   const body = `<section class="sec sec--tight"><div class="sec__in sec__in--contact">
     <div class="cleft">
       <div class="cinfo">${info.map((c, i) => `<div class="icard reveal" style="--d:${(i * 0.08).toFixed(2)}s"><span class="icard__ico">${ICONS[c[0]]}</span><span class="eyebrow eyebrow--primary">${c[1]}</span><b>${c[2]}</b><em>${c[3]}</em></div>`).join('')}</div>
+      <div class="cmap reveal" style="--d:.15s"><iframe title="PetCare+ location in Casablanca" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Boulevard+d%27Anfa+Casablanca+Maroc&output=embed"></iframe><a class="cmap__open" target="_blank" rel="noopener" href="https://maps.google.com/?q=Boulevard+d%27Anfa+Casablanca+Maroc">${ICONS.pin}Open in Google Maps</a></div>
       <div class="hours reveal" style="--d:.2s"><h3>${ICONS.clock}Opening hours</h3>${hours.map(h => `<div><span>${h[0]}</span><b>${h[1]}</b></div>`).join('')}</div>
     </div>
     <form class="form form--card reveal" style="--d:.15s" id="form" novalidate>
@@ -347,8 +359,8 @@ legal('privacy.html', 'Privacy Policy', 'How PetCare+ collects, uses and protect
   ['How we use your information', 'We use your information to provide veterinary care, manage appointments and reminders, process payments, respond to enquiries and meet our legal and professional obligations. We will only send you marketing messages if you have opted in, and you can unsubscribe at any time.'],
   ['Sharing your information', 'We never sell your personal information. We may share it with trusted partners who help us run our clinic, such as laboratories, referral hospitals, payment processors and pet insurers, only when necessary to care for your pet or process your request.'],
   ['How long we keep it', 'Clinical records are kept for as long as required by veterinary regulations. Other personal information is kept only for as long as it is needed for the purposes described in this policy.'],
-  ['Your rights', 'You can ask to access, correct or delete the personal information we hold about you, or object to certain types of processing. To make a request, email hello@petcareplus.com and we will respond within 30 days.'],
-  ['Contact us', 'If you have any questions about this policy, contact PetCare+, 340 Pine Street, Suite 800, San Francisco, CA 94104, or email hello@petcareplus.com.']]);
+  ['Your rights', 'You can ask to access, correct or delete the personal information we hold about you, or object to certain types of processing. To make a request, email hello@petcareplus.ma and we will respond within 30 days.'],
+  ['Contact us', 'If you have any questions about this policy, contact PetCare+, Boulevard d’Anfa, Racine, Casablanca 20100, Maroc, or email hello@petcareplus.ma.']]);
 legal('terms.html', 'Terms &amp; Conditions', 'The terms that apply when you use our website and book care for your pet at PetCare+.',
   'These terms apply to your use of the PetCare+ website and to the veterinary services we provide. By booking an appointment or using this website, you agree to these terms.', [
   ['Appointments &amp; cancellations', 'Please give at least 24 hours’ notice if you need to cancel or reschedule. Late cancellations or missed appointments may incur a fee. We always do our best to run on time, but emergencies can occasionally cause delays.'],
