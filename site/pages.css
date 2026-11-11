@@ -281,3 +281,22 @@ body{animation:pgin .6s var(--ease) both}
   .scard{aspect-ratio:auto;min-height:470px}
   .stat{gap:18px}.stat__n{width:84px;font-size:32px}
 }
+
+/* CTA: dog photo stays INSIDE the rounded box (its pale background blends into the box, no square sticking out) */
+.cta__box{overflow:hidden;align-items:stretch;min-height:440px}
+.cta__text{justify-content:center}
+.cta__img{position:relative;flex:1 1 52%;min-width:0;align-self:stretch;display:block}
+.cta__img img{position:absolute;right:0;bottom:0;height:100%;width:auto;max-width:none;margin:0;object-fit:contain;object-position:right bottom;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 16%);mask-image:linear-gradient(to right,transparent 0,#000 16%)}
+@media (max-width:1199px){.cta__box{min-height:400px}.cta__img img{width:auto;height:100%}}
+@media (max-width:809px){
+  .cta__box{flex-direction:column;min-height:0;padding:36px 22px 0}
+  .cta__text{padding:0 0 8px}
+  .cta__img{flex:none;width:100%;height:225px;margin-top:8px}
+  .cta__img img{height:100%;width:auto;left:0;right:0;margin:0 auto}
+}
+@media (min-width:1200px){
+  .cta__text{flex:1 1 56%;padding-right:24px}
+  .cta__img{flex:1 1 44%}
+  .cta__text .h3{max-width:580px}
+  .cta__text .large{max-width:540px}
+}
